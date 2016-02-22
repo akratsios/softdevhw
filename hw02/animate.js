@@ -19,9 +19,8 @@ function setup(){
 }
 
 
-function drawDot(event){
-
-    event.preventDefault(); 
+var drawDot = function(){
+ 
 
     ctx.clearRect(0,0,538,538);
     ctx.strokeRect(0,0,538,538); 
@@ -32,18 +31,16 @@ function drawDot(event){
     ctx.fill();
 
     if(dir == 0)
-        radius+=10;
+        radius+=3;
     else
-        radius-=10;
+        radius-=3;
     if(radius >= 538/2)
         dir = 1;
     if(radius <= 0)
         dir = 0;
 
-    window.requestAnimationFrame(drawDot);  
-}
-
-window.requestAnimationFrame(drawDot);  
+    window.requestAnimationFrame( drawDot );
+} 
 
 
 var empty = function empty(event){
