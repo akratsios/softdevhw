@@ -1,69 +1,59 @@
 /*Andrew Kratsios
 SoftDev2 pd 3
-HW 2b -- Dot, Dot, Dot
-2016-02-11*/
+HW#02 -- Circular
+2016-02-22*/
 
 var c = document.getElementById("playground");
 var ctx = c.getContext("2d");
 var r = document.getElementById("clear");
+var go = document.getElementById("start");
 
 var x;
 var y;
-var count = 0;
+var dir = 0;
 var s = 0;
-
-ctx.beginpath();
-ctx.arc(c.width/2,c.height/2,radius,0,2*Math.PI);
-ctx.stroke();
-ctx.fill();
-
-window.requestAnimationFrame( drawDot );
+var radius = 0;
 
 function setup(){
     ctx.strokeRect(0,0,538,538); 
 }
 
-function make(event) {
 
-    event.preventDefault();   
+function drawDot(event){
 
+    event.preventDefault(); 
+
+    ctx.clearRect(0,0,538,538);
     ctx.strokeRect(0,0,538,538); 
-
-    if (count == 1) {
-	var x1 = x;
-	var y1 = y;
-    }
-
-    x = event.clientX-9;
-    y = event.clientY-70;
-
     ctx.beginPath();
-    ctx.arc(x,y,15,0,2*Math.PI);
+    ctx.arc( 538/2 , 538/2 , radius , 0 , 2*Math.PI );
     ctx.stroke();
     ctx.fillStyle = "blue";
-    ctx.fill();    
-    ctx.closePath();
- 
-    if (count = 1) {
-	ctx.moveTo(x1,y1);
-	ctx.beginPath();
-	ctx.lineTo(x1,y1);
-	ctx.lineTo(x,y);
-	ctx.stroke();
-	ctx.closePath();
-    }
-    
-    if (count == 0)
-	count = 1;
+    ctx.fill();
+
+    if(dir == 0)
+        radius+=10;
+    else
+        radius-=10;
+    if(radius >= 538/2)
+        dir = 1;
+    if(radius <= 0)
+        dir = 0;
+
+    window.requestAnimationFrame(drawDot);  
 }
+
+window.requestAnimationFrame(drawDot);  
+
 
 var empty = function empty(event){
     event.preventDefault();
     ctx.clearRect(0,0,538,538);
     ctx.strokeRect(0,0,538,538); 
-    count = 0;
+    radius = 0;
 }
 
 setup();
-c.addEventListener("click", make);
+c.addEventListener("click", drawDot);
 r.addEventListener("click", empty);
+go.addEventListener("click", drawDot);
