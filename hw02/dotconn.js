@@ -12,6 +12,13 @@ var y;
 var count = 0;
 var s = 0;
 
+ctx.beginpath();
+ctx.arc(c.width/2,c.height/2,radius,0,2*Math.PI);
+ctx.stroke();
+ctx.fill();
+
+window.requestAnimationFrame( drawDot );
+
 function setup(){
     ctx.strokeRect(0,0,538,538); 
 }
