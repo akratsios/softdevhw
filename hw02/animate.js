@@ -12,8 +12,12 @@ var requestID;
 var x;
 var y;
 var dir = 0;
+var xdir = 0;
+var ydir = 0;
 var s = 0;
 var radius = 0;
+var logo = new Image();
+logo.src="logo_dvd.jpg"
 
 function setup(){
     ctx.strokeRect(0,0,538,538); 
@@ -45,6 +49,27 @@ var drawDot = function(){
 
 var stopIt = function(){
     window.cancelAnimationFrame(requestID);
+}
+
+var dvd = function(event){
+    ctx.clearRect(0,0,538,538);
+    ctx.strokRect(0,0,538,538);
+
+    x = event.offsetX;
+    y = event.offsetY;
+    ctx.drawImage(logo,x,y,100,66.6666666);
+
+    if (xdir == 0)
+	x++;
+    else
+	x--;
+
+    if (ydir == 0)
+	y++;
+    else
+	y--;
+
+    requestID = window.requestAnimationFrame(dvd);
 }
 
 var empty = function empty(event){
