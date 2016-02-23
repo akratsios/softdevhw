@@ -7,6 +7,7 @@ var c = document.getElementById("playground");
 var ctx = c.getContext("2d");
 var r = document.getElementById("clear");
 var go = document.getElementById("start");
+var requestID;
 
 var x;
 var y;
@@ -27,7 +28,7 @@ var drawDot = function(){
     ctx.beginPath();
     ctx.arc( 538/2 , 538/2 , radius , 0 , 2*Math.PI );
     ctx.stroke();
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "green";
     ctx.fill();
 
     if(dir == 0)
@@ -39,9 +40,12 @@ var drawDot = function(){
     if(radius <= 0)
         dir = 0;
 
-    window.requestAnimationFrame( drawDot );
+    requestID = window.requestAnimationFrame( drawDot );
 } 
 
+var stopIt = function(){
+    window.cancelAnimationFrame(requestID);
+}
 
 var empty = function empty(event){
     event.preventDefault();
@@ -52,5 +56,5 @@ var empty = function empty(event){
 
 setup();
 c.addEventListener("click", drawDot);
-r.addEventListener("click", empty);
+r.addEventListener("click", stopIt);
 go.addEventListener("click", drawDot);
