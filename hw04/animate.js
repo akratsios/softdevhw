@@ -44,18 +44,22 @@ var stopIt = function(){
     window.cancelAnimationFrame(requestID);
 }
 
-var x_dvd = c.width/2 +  Math.floor((Math.random() * 100) + 1);
-var y_dvd = c.height/2 + Math.floor((Math.random() * 100) + 1);
-var x_dir = 1.5;
-var y_dir = -1.5;
-var logo = new Image();
-logo.src = "logo_dvd.jpg";
+var dvdLogoSetup = function(){
+
+    window.cancelAnimationFrame(requestID);
+
+    var x_dvd = c.width/2 +  Math.floor((Math.random() * 100) + 1);
+    var y_dvd = c.height/2 + Math.floor((Math.random() * 100) + 1);
+    var x_dir = 1.5;
+    var y_dir = -1.5;
+    var logo = new Image();
+    logo.src = "logo_dvd.jpg";
     
-var drawDVD_Logo = function(){
-    clearBox();
-    if ( x_dvd >= (c.width - 60) || x_dvd <= 0 ) {
-        x_dir = -x_dir;
-    } 
+    var drawDVD_Logo = function(){
+	clearBox();
+	if ( x_dvd >= (c.width - 60) || x_dvd <= 0 ) {
+	    x_dir = -x_dir;
+	} 
 	if ( y_dvd >= (c.height - 40) || y_dvd <= 0 ) {
 	    y_dir = -y_dir;
 	}
@@ -64,6 +68,11 @@ var drawDVD_Logo = function(){
 	ctx.drawImage(logo,x_dvd,y_dvd,60,40);
 	
 	requestID = window.requestAnimationFrame(drawDVD_Logo);
+	
+    }
+
+    drawDVDLogo();
+
 }
 
 //* outlines the canvas that the user can draw in
@@ -90,5 +99,5 @@ var empty = function empty(event){
 setup();
 c.addEventListener("click", drawDot);
 r.addEventListener("click", stopIt);
-d.addEventListener("click",drawDVD_Logo);
+d.addEventListener("click",dvdLogoSetup);
 go.addEventListener("click", drawDot);
