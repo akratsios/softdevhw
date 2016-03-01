@@ -1,4 +1,0 @@
-var pic = document.getElementByID("vimage");
-var c = document.createElementNS("https://www.w3.org/2000/svg", "circle");
-
-

@@ -19,3 +19,11 @@ var clicked = function(e){
     }
 };
 pic.addEventListener("click",clicked);
+
+
+
+intervalID = window.setInterval(<FXN> , 16 );
+document.getElementByTagName("circle")[0];
+radius = parseInt(c.getAttribute("r"));
+c.setAttribute("r",radius.toString());
+window.clearInterval(IntervalID);
