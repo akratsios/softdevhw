@@ -38,7 +38,7 @@ var dvdThing = function dvdThing(){
     var ypos_dvd = 250;
     var xdir = 1;
     var ydir = 1;
-    var DVD_draw = function DVD_draw(){
+    var dvdGo = function dvdGo(){
         xpos_dvd += xdir;
         ypos_dvd += ydir;
         if(xpos_dvd == 0 || xpos_dvd == 400){xdir = -1 * xdir};
@@ -47,7 +47,7 @@ var dvdThing = function dvdThing(){
         q.setAttributeNS(null,'y',ypos_dvd);
         piq.appendChild(q);
     }
-    IntervalID2 = window.setInterval(DVD_draw, 10);
+    IntervalID2 = window.setInterval(dvdGo, 10);
 }
 
 
