@@ -1,0 +1,11 @@
+def union(A,B):
+    return [x for c in A if x not in B] + B
+
+def sym_diff(a,b):
+    return union(set_diff(a,b),set_diff(b,a))
+
+def inter(a,b):
+    return[x for x in a if x in b]
+
+def set_diff(u,a):
+    return [x for x in u if x not in a]
